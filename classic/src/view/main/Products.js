@@ -70,13 +70,13 @@ Ext.define("MyApp.view.main.Products", {
                     var grid = field.up("grid");
                     var store = grid.getStore();
                     var value = field.getValue().trim();
-
+                    var fieldName = field.fieldLabel === "ID" ? "id" : "description";
                     var proxy = store.getProxy();
                     var allData = store.config.data.items;
 
                     var filteredData = value
                       ? allData.filter(function (item) {
-                          return item.id.toString().includes(value);
+                          return item[fieldName].toString().toLowerCase().includes(value.toLowerCase());
                         })
                       : allData;
 
@@ -92,7 +92,42 @@ Ext.define("MyApp.view.main.Products", {
                   }
                 },
               },
-            },
+            },{
+              xtype: "textfield",
+              fieldLabel: "Описание",
+              labelWidth: 80,
+              enableKeyEvents: true,
+              flex: 1,
+              emptyText: "Введите фильтр...",
+              listeners: {
+                keypress: function (field, e) {
+                  if (e.getKey() === e.ENTER) {
+                    var grid = field.up("grid");
+                    var store = grid.getStore();
+                    var value = field.getValue().trim();
+                    var fieldName = field.fieldLabel === "ID" ? "id" : "description";
+                    var proxy = store.getProxy();
+                    var allData = store.config.data.items;
+
+                    var filteredData = value
+                      ? allData.filter(function (item) {
+                          return item[fieldName].toString().toLowerCase().includes(value.toLowerCase());
+                        })
+                      : allData;
+
+                    proxy.data = { items: filteredData };
+                    store.load();
+                    store.currentPage = 1;
+
+                    store.load({
+                      callback: function () {
+                        grid.down("pagingtoolbar").updateInfo();
+                      },
+                    });
+                  }
+                },
+              },
+            }
           ],
         },
       ],
