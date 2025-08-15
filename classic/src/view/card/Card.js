@@ -55,7 +55,7 @@ Ext.define("MyApp.view.product.Card", {
         {
           text: "Сохранить",
           handler: function () {
-            var form = this.up("form"),
+            const form = this.up("form"),
               record = form.getRecord(),
               values = form.getValues();
 

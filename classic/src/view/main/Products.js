@@ -30,7 +30,7 @@ Ext.define("MyApp.view.main.Products", {
 
   listeners: {
     cellclick: function (grid, _, cellIndex, record) {
-      var column = grid.headerCt.getGridColumns()[cellIndex];
+      const column = grid.headerCt.getGridColumns()[cellIndex];
 
       if (column && column.dataIndex === "name") {
         Ext.widget("productcard", {
@@ -67,14 +67,14 @@ Ext.define("MyApp.view.main.Products", {
               listeners: {
                 keypress: function (field, e) {
                   if (e.getKey() === e.ENTER) {
-                    var grid = field.up("grid");
-                    var store = grid.getStore();
-                    var value = field.getValue().trim();
-                    var fieldName = field.fieldLabel === "ID" ? "id" : "description";
-                    var proxy = store.getProxy();
-                    var allData = store.config.data.items;
+                    const grid = field.up("grid");
+                    const store = grid.getStore();
+                    const value = field.getValue().trim();
+                    const fieldName = field.fieldLabel === "ID" ? "id" : "description";
+                    const proxy = store.getProxy();
+                    const allData = store.config.data.items;
 
-                    var filteredData = value
+                    const filteredData = value
                       ? allData.filter(function (item) {
                           return item[fieldName].toString().toLowerCase().includes(value.toLowerCase());
                         })
@@ -102,14 +102,14 @@ Ext.define("MyApp.view.main.Products", {
               listeners: {
                 keypress: function (field, e) {
                   if (e.getKey() === e.ENTER) {
-                    var grid = field.up("grid");
-                    var store = grid.getStore();
-                    var value = field.getValue().trim();
-                    var fieldName = field.fieldLabel === "ID" ? "id" : "description";
-                    var proxy = store.getProxy();
-                    var allData = store.config.data.items;
+                    const grid = field.up("grid");
+                    const store = grid.getStore();
+                    const value = field.getValue().trim();
+                    const fieldName = field.fieldLabel === "ID" ? "id" : "description";
+                    const proxy = store.getProxy();
+                    const allData = store.config.data.items;
 
-                    var filteredData = value
+                    const filteredData = value
                       ? allData.filter(function (item) {
                           return item[fieldName].toString().toLowerCase().includes(value.toLowerCase());
                         })

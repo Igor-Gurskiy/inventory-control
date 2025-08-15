@@ -9,15 +9,15 @@ Ext.define("MyApp.view.main.MainController", {
 
   onLogoutClick: function () {
     localStorage.removeItem("MyAppLoggedIn");
-    var loginWindow = Ext.create("MyApp.view.login.Login");
-    var form = loginWindow.down("form").getForm();
+    const loginWindow = Ext.create("MyApp.view.login.Login");
+    const form = loginWindow.down("form").getForm();
     form.reset();
     this.getView().destroy();
   },
 
   onProductsClick: function () {
-    var tabPanel = this.getView();
-    var productsTab = tabPanel.down("productslist");
+    const tabPanel = this.getView();
+    const productsTab = tabPanel.down("productslist");
 
     if (!productsTab) {
       productsTab = tabPanel.add({
